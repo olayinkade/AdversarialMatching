@@ -9,7 +9,8 @@ on the darknet marketplace. In addition, we propose and design a system that per
 In single market analysis, we identify all the addresses that can possibly belong to a vendor, while in multi market
 analysis, we try to probabilistically match users across multi market darknet marketplaces.
 
-single_market_analysis.py
+# single_market_analysis.py
+
 This script helps us perform single market analysis. 
 it maps the  output file structure to mimic the input gram file structure.
 it creates all the subdirectories and inside those directories the marketplace 
@@ -20,9 +21,11 @@ which is one day plus the start time. Since the output edge data is sorted by ti
 binary search for the start time in the list of outputs and find the transaction that is closest to that
 unix time. 
 
-duplicate_removal.py
+# duplicate_removal.py
+
 this code creates a new directory that matches the grams dataset, it remove all the duplicate between files
 of the same marketplace. 
 
-remove_column.py
+# remove_column.py
+
 this code creates a new directory that matches the grams dataset, it removes all the columns specified
