@@ -9,7 +9,7 @@ os.mkdir('new_sub2')
 #for creating a clone of the directory that houses the csv comparison results
 for direc, subdir, files in os.walk(dir_name):
     for sub_d in subdir:
-        os.mkdir('new_sub2/{0}'.format(sub_d))
+        os.mkdir('new_sub/{0}'.format(sub_d))
 
 
 
@@ -33,7 +33,7 @@ for subdir in os.walk(dir_name):
                         with open(os.path.join(dir_name,curr_file[j]), "r") as second_csv_file:
                             second_csv_reader = csv.DictReader(second_csv_file)
                             curr_r = (curr_file[i].split("/")[1]).split(".")[0] + curr_file[j].split("/")[1]
-                            with open("new_sub2/{0}".format(os.path.join(curr_file[i].split("/")[0],curr_r)), "w", newline='') as write_file:
+                            with open("new_sub/{0}".format(os.path.join(curr_file[i].split("/")[0],curr_r)), "w", newline='') as write_file:
                                 fieldnames = ["vendor_name","price","name","description", "add_time","ship_from"]
                                 write_new_csv = csv.DictWriter(write_file, fieldnames= fieldnames)
 
@@ -63,6 +63,6 @@ for subdir in os.walk(dir_name):
                                         break
                                 first_csv_file.seek(0)
                                 first_csv_reader = csv.DictReader(first_csv_file)    
-                                print(duplicate_count)
+print(duplicate_count)                                
 
             curr_file =[]
