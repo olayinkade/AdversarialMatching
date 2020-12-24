@@ -32,4 +32,4 @@ this code creates a new directory that matches the grams dataset, it removes all
 
 # multiAnalysis.py
 
-this code checks for usernames of multiple darknet markeks that belong to the same vendors. The col_name set is the determining list to get identites of vendors trading on multiple darknet market. The code collects the found "duplicates" and writes them in a csv file.
+This script checks for vendors of multiple darknet markets trading on these marketplaces. The col_name set is the determining list to get identites of vendors trading on multiple darknet market. The code collects the found "duplicates" and writes them in a csv file.
