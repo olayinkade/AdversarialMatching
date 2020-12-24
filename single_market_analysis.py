@@ -7,7 +7,7 @@ root_dir = 'clean_gram'
 lookup = {}
 
 curr_year = "2016"
-
+end_time = 24*(60*60)
 
 # This function stores where to start searching for a specific product by looking at the date of the subdirectory
 # and  comparing it to the output edge file
@@ -69,7 +69,7 @@ def processor():
         sub = subdir.replace("clean_gram\\", "")
         for file in files:
             if curr_year in subdir:
-                month = subdir.split("-")[1]
+                month = int(subdir.split("-")[1])
                 if int(month) > curr_month:
                     curr_f.close()
                     curr_month += 1
@@ -90,9 +90,9 @@ def processor():
                             if float(row["price"]) != 0:
                                 index = lookup[subdir.replace("clean_gram\\", "")]
                                 price_in_satoshi = round(float(row["price"]) * 10 ** 8)
-                                stop = (convert_to_unix_timestamp(subdir.replace("clean_gram\\",  "")) + (24 * (60**2)))
-                                if index != -1:
-                                    while int(output_list[index][0]) < stop:
+                                stop = (convert_to_unix_timestamp(subdir.replace("clean_gram\\",  "")) + end_time)
+                                if index != -1 and index < len(output_list):
+                                    while index < len(output_list) and int(output_list[index][0]) < stop:
                                         # if price_in_satoshi in output_list[index]:
                                         last_index = len(output_list[index]) - 2
                                         n_of_addresses = int(last_index / 2)
@@ -104,6 +104,11 @@ def processor():
 
                                             curr_value += 2
                                         index += 1
+                                if index >= len(output_list):
+                                    print(index)
+                                    month += 1
+                                    break
+
                             row["addresses"] = addresses_found
                             row["number_of_addresses"] = amount_of_transaction_found
                             if amount_of_transaction_found != 0:
